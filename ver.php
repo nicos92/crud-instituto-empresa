@@ -7,48 +7,65 @@ if (isset($_GET['id'])) {
     $query = "select * from empleados where id=$id";
     $resultado = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($resultado)==1){
+    if (mysqli_num_rows($resultado) == 1) {
         $row = mysqli_fetch_array($resultado);
         $dni = $row['dni'];
         $nombre = $row['nombre'];
         $apellido = $row['apellido'];
+        $direccion = $row['direccion'];
         $telefono = $row['telefono'];
-
+        $departamento = $row['departamento'];
+        $localidad = $row['localidad'];
     }
+}
 
-    }
 
-    
-    
-    ?>
 
-    <?php include("includes/header.php"); ?>
+?>
 
-   <div class="container p-4">
+<?php include("includes/header.php"); ?>
 
-   <div class="row">
+<div class="container p-4">
 
-    <col-md4 mx-auto>
-        
-        <div class="card card-body ">
-            <!--Actualizar con método POST-->
-    <form action="">
-        <form-group>
-        <input type="text" name="dni" value="<?php echo $dni; ?>" class="form-control" placeholder="Actualizar DNI"><br>
-            <input type="text" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre"><br>
-            <input type="text" name="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Actualizar apellido"><br>
-            <input type="text" name="telefono" value="<?php echo $telefono; ?>" class="form-control" placeholder="Actualizar teléfono"><br>
-        </form-group>
-        <br>
-   <a href="index.php" type="button" class="btn btn-success">Volver</a>
-    </form>
-        </div>    
+    <div class="row">
 
-        </col-md>
+        <col-md4 mx-auto>
 
-   </div>
+            <div class="card card-body ">
+                <h3>Ver empleado</h3>
+                <!--Mostrar datos del empleado-->
+                <div class="form-group">
+                    <label><strong>DNI:</strong></label>
+                    <input type="text" value="<?php echo $dni; ?>" class="form-control" readonly><br>
 
-   </div>
-    
+                    <label><strong>Nombre:</strong></label>
+                    <input type="text" value="<?php echo $nombre; ?>" class="form-control" readonly><br>
 
-    <?php include("includes/footer.php"); ?>
+                    <label><strong>Apellido:</strong></label>
+                    <input type="text" value="<?php echo $apellido; ?>" class="form-control" readonly><br>
+
+                    <label><strong>Dirección:</strong></label>
+                    <input type="text" value="<?php echo $direccion; ?>" class="form-control" readonly><br>
+
+                    <label><strong>Teléfono:</strong></label>
+                    <input type="text" value="<?php echo $telefono; ?>" class="form-control" readonly><br>
+
+                    <label><strong>Departamento:</strong></label>
+                    <input type="text" value="<?php echo $departamento; ?>" class="form-control" readonly><br>
+
+                    <label><strong>Localidad:</strong></label>
+                    <input type="text" value="<?php echo $localidad; ?>" class="form-control" readonly><br>
+                </div>
+
+                <br>
+                <a href="index.php" type="button" class="btn btn-success col-md-2">Volver</a>
+            </div>
+
+            </col-md>
+
+    </div>
+
+</div>
+
+
+<?php include("includes/footer.php"); ?>
