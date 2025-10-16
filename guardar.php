@@ -26,11 +26,11 @@ if(isset($_POST ['guardar-empleado'])){
     
         $_SESSION['message'] = 'Registro guardado con éxito';
     
-        header ("Location: index.php");
+        header ("Location: inicio.php");
     } else {
         $_SESSION['message'] = 'Completar todos los datos';
     
-        header ("Location: index.php");
+        header ("Location: inicio.php");
     }
     
 }

@@ -5,7 +5,7 @@ USE instituto_db;
 -- Creación de la tabla empleados
 CREATE TABLE IF NOT EXISTS empleados (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    dni INT(8) NOT NULL,
+    dni INT(8) NOT NULL UNIQUE,
     nombre VARCHAR(255) NOT NULL,
     apellido VARCHAR(255) NOT NULL,
     direccion VARCHAR(255),
@@ -29,3 +29,17 @@ INSERT INTO empleados (dni, nombre, apellido, direccion, telefono, departamento,
 
 INSERT INTO usuarios (username, password, email) VALUES
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@empresa.com');
+
+-- Procedimiento almacenado para buscar empleados por DNI, nombre o apellido
+DELIMITER //
+
+CREATE PROCEDURE BuscarEmpleadosPorDNI_nombre_apellido(IN parametro_busqueda VARCHAR(255))
+BEGIN
+    SELECT *
+    FROM empleados
+    WHERE dni LIKE CONCAT('%', parametro_busqueda, '%')
+    OR nombre LIKE CONCAT('%', parametro_busqueda, '%')
+    OR apellido LIKE CONCAT('%', parametro_busqueda, '%');
+END //
+
+DELIMITER ;

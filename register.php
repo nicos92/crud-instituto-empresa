@@ -47,40 +47,42 @@ if (isset($_POST['register'])) {
 
 <?php include("includes/header.php"); ?>
 
-<div class="container p-4">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="card card-body">
-                <h3>Registro de Usuario</h3>
-                
-                <?php if (!empty($error)): ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?= $error ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="content">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card card-body">
+                        <h3>Registro de Usuario</h3>
+                        
+                        <?php if (!empty($error)): ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <?= $error ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($success)): ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <?= $success ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <form action="register.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
+                                <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
+                                <input type="password" name="password" class="form-control" placeholder="Contraseña" required><br>
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required><br>
+                            </div>
+                            <br>
+                            <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
+                            <a href="index.php" class="btn btn-secondary">Volver al inicio</a>
+                        </form>
                     </div>
-                <?php endif; ?>
-                
-                <?php if (!empty($success)): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?= $success ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endif; ?>
-                
-                <form action="register.php" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
-                        <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required><br>
-                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required><br>
-                    </div>
-                    <br>
-                    <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
-                    <a href="index.php" class="btn btn-secondary">Volver al inicio</a>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php include("includes/footer.php"); ?>

@@ -1,7 +1,10 @@
 
-<?php
-
+<?php 
 include("conexion.php");
+if (!isset($_SESSION['logueado'])) {
+    header("Location: login.php");
+    exit();
+}
 
 if (isset($_GET['id'])) {
 
@@ -16,7 +19,7 @@ if (isset($_GET['id'])) {
 
     $_SESSION['message'] = 'Registro eliminado correctamente';
 
-    header("location: index.php");
+    header("location: inicio.php");
 }
 
 ?>
