@@ -42,7 +42,7 @@ if (isset($_POST['login'])) {
     <div class="content p-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 mx-auto">
+                <div class="col-md-6 mx-auto mt-5">
                     <div class="card card-body">
                         <h3>Iniciar Sesión</h3>
 
