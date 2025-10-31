@@ -10,7 +10,7 @@ if (isset($_POST['register'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    
+
     // Validar que los campos no estén vacíos
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'Todos los campos son obligatorios';
@@ -24,17 +24,17 @@ if (isset($_POST['register'])) {
         $stmt->bind_param("ss", $username, $email);
         $stmt->execute();
         $result = $stmt->get_result();
-        
+
         if ($result->num_rows > 0) {
             $error = 'El nombre de usuario o correo electrónico ya está registrado';
         } else {
             // Cifrar la contraseña
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
+
             // Insertar el nuevo usuario
             $stmt = $conn->prepare("INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $username, $email, $hashed_password);
-            
+
             if ($stmt->execute()) {
                 $success = 'Usuario registrado exitosamente';
             } else {
@@ -47,42 +47,66 @@ if (isset($_POST['register'])) {
 
 <?php include("includes/header.php"); ?>
 
-    <div class="content">
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card card-body">
-                        <h3>Registro de Usuario</h3>
-                        
-                        <?php if (!empty($error)): ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <?= $error ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if (!empty($success)): ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <?= $success ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <form action="register.php" method="POST">
-                            <div class="form-group">
-                                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
-                                <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
-                                <input type="password" name="password" class="form-control" placeholder="Contraseña" required><br>
-                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required><br>
-                            </div>
-                            <br>
-                            <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
-                            <a href="index.php" class="btn btn-secondary">Volver al inicio</a>
-                        </form>
+<div class="content">
+    <div class="container p-4 mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card card-body">
+                    <h3>Registro de Usuario</h3>
+                    <div id="cartelContra">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Las contraseñas no coinciden
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     </div>
+                    <?php if (!empty($error)): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= $error ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($success)): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= $success ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="register.php" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
+                            <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
+                            <input id="passuno" type="password" name="password" class="form-control" placeholder="Contraseña" required ><br>
+                            <input id="passdos" type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required ><br>
+                        </div>
+                        <br>
+                        <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
+                        <a href="index.php" class="btn btn-secondary">Volver al inicio</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <?php include("includes/footer.php"); ?>
+
+<script>
+
+    document.getElementById("passuno").addEventListener("input", VerificarContrasenia);
+    document.getElementById("passdos").addEventListener("input", VerificarContrasenia);
+
+    const carteError = document.getElementById('cartelContra');
+    function VerificarContrasenia() {
+
+        const contra = document.getElementById('passuno').value;
+        const contra2 = document.getElementById('passdos').value;
+        if (contra != contra2) {
+            carteError.style.display = 'block';
+        } else {
+            carteError.style.display = 'none';
+
+        }
+    }
+</script>

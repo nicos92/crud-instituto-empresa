@@ -59,10 +59,10 @@ if (isset($_GET['id'])) {
                             <label><strong>Departamento:</strong></label>
                             <input type="text" value="<?php echo $departamento; ?>" class="form-control" readonly><br>
 
-                            <label><strong>Localidad:</strong></label>
-                            <input type="text" value="<?php echo $localidad; ?>" class="form-control" readonly><br>
                             <label><strong>Provincia:</strong></label>
                             <input type="text" value="<?php echo $provincia; ?>" class="form-control" readonly><br>
+                            <label><strong>Localidad:</strong></label>
+                            <input type="text" value="<?php echo $localidad; ?>" class="form-control" readonly><br>
                         </div>
 
                         <br>

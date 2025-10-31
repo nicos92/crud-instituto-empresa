@@ -43,7 +43,7 @@ if (isset($_POST['actualizar'])) {
     $provincia =  $_POST['provincia'] ?? '';
 
 
-    $query = "update empleados set dni='$dni', nombre='$nombre', apellido='$apellido', direccion='$direccion', telefono='$telefono', id_departamento=$departamento, localidad='$localidad', provincia = '$provincia' where id=$id";
+    $query = "update empleados set dni='$dni', nombre='$nombre', apellido='$apellido', direccion='$direccion', telefono='$telefono', id_departamento=$departamento, id_localidad='$localidad', id_provincia = '$provincia' where id=$id";
 
     mysqli_query($conn, $query);
 
@@ -72,11 +72,11 @@ function seleccionar($actual, $cia)
                     <!--Actualizar con método POST-->
                     <form action="editar.php?id=<?php echo $_GET['id']; ?>" method="POST">
                         <div class="form-group">
-                            <input type="text" name="dni" value="<?php echo $dni; ?>" class="form-control" placeholder="Actualizar DNI"><br>
-                            <input type="text" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre"><br>
-                            <input type="text" name="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Actualizar apellido"><br>
-                            <input type="text" name="direccion" value="<?php echo $direccion; ?>" class="form-control" placeholder="Actualizar dirección"><br>
-                            <input type="text" name="telefono" value="<?php echo $telefono; ?>" class="form-control" placeholder="Actualizar teléfono"><br>
+                            <input type="text" name="dni" value="<?php echo $dni; ?>" class="form-control" placeholder="Actualizar DNI" required><br>
+                            <input type="text" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre" required><br>
+                            <input type="text" name="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Actualizar apellido" required><br>
+                            <input type="text" name="direccion" value="<?php echo $direccion; ?>" class="form-control" placeholder="Actualizar dirección" required><br>
+                            <input type="text" name="telefono" value="<?php echo $telefono; ?>" class="form-control" placeholder="Actualizar teléfono" required><br>
                             <?php
 
                             $departamento_actual = $departamento;
@@ -84,21 +84,10 @@ function seleccionar($actual, $cia)
                             $localidad_actual = $localidad;
                             include("includes/departamentos.php");
                             ?>
+                            <?php include("includes/provincias2.php"); ?>
+                            <?php include("includes/localidades.php"); ?>
 
-                            <select name="localidad" class="form-control" required>
-                                <option value="">Seleccionar Localidad</option>
-                                <option value="Alejandro Korn"
-                                    <?php echo seleccionar($localidad_actual, "Alejandro Korn") ?>>Alejandro Korn</option>
-                                <option value="Glew"
-                                    <?php echo seleccionar($localidad_actual, "Glew") ?>>Glew</option>
-                                <option value="Longchamps"
-                                    <?php echo seleccionar($localidad_actual, "Longchamps") ?>>Longchamps</option>
-                                <option value="San Vicente"
-                                    <?php echo seleccionar($localidad_actual, "San Vicente") ?>>San Vicente</option>
-                                <option value="Doomselaar"
-                                    <?php echo seleccionar($localidad_actual, "Doomselaar") ?>>Doomselaar</option>
-                            </select><br>
-                            <?php include("includes/provincias.php"); ?>
+
                         </div>
 
                         <br>

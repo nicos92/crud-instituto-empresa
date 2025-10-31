@@ -15,7 +15,7 @@ if(isset($_POST ['guardar-empleado'])){
         $localidad = $_POST['localidad'];
         $provincia = $_POST['provincia'];
 
-        $query = "insert into empleados (dni, nombre, apellido, direccion, telefono, id_departamento, localidad, provincia) values ('$dni', '$nombre', '$apellido', '$direccion', '$telefono', $departamento, '$localidad', '$provincia')";
+        $query = "insert into empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia) values ('$dni', '$nombre', '$apellido', '$direccion', '$telefono', $departamento, '$localidad', '$provincia')";
 
         try {
             //code...
@@ -32,7 +32,7 @@ if(isset($_POST ['guardar-empleado'])){
         }
         header ("Location: inicio.php");
     } else {
-        $_SESSION['message'] = 'Completar todos los datos';
+        $_SESSION['error'] = 'Completar todos los datos';
 
         header ("Location: inicio.php");
     }

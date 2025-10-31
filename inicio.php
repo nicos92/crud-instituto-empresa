@@ -30,24 +30,22 @@ if (!isset($_SESSION['logueado'])) {
                 aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner h-100">
-            <div class="carousel-item active h-100">
+            <div class="carousel-item active h-100 position-relative">
                 <img src="./imgs/pexels-sydney-troxell-223521-718752.jpg" alt="" class="h-100 w-100">
-                <div class="container h-100 d-flex align-items-center  bg-secondary-subtle">
-                    <div class="carousel-caption text-start text-black shadow-lg p-3 bg-body-white rounded">
+                <div class="container h-auto d-flex align-items-center  bg-secondary-subtle">
+                    <div class="carousel-caption h-auto text-start text-black shadow-lg p-3 bg-white rounded position-absolute top-25 start-50 translate-middle" style="--bs-bg-opacity: .5;">
                         <h1>Alguna Frase.</h1>
-                        <p class="opacity-75">
+                        <p>
                             Alguna frase larga que represente algo.
                         </p>
-                        <p>
-                            <a class="btn btn-lg btn-primary d-none" href="#">Sign up today</a>
-                        </p>
+
                     </div>
                 </div>
             </div>
-            <div class="carousel-item  h-100">
+            <div class="carousel-item  h-100 position-relative">
                 <img src="./imgs/pexels-mccutcheon-1174114.jpg" alt="" class="h-100 w-100">
                 <div class="container h-100 d-flex align-items-center  bg-secondary-subtle">
-                    <div class="carousel-caption text-center text-black  shadow-lg p-3 bg-body-white rounded">
+                    <div class="carousel-caption text-center text-black  shadow-lg p-3 bg-body-white rounded position-absolute top-25 start-50 translate-middle">
                         <h1>Alguna Frase.</h1>
                         <p class="opacity-75">
                             Alguna frase larga que represente algo.
@@ -56,10 +54,10 @@ if (!isset($_SESSION['logueado'])) {
                     </div>
                 </div>
             </div>
-            <div class="carousel-item  h-100">
+            <div class="carousel-item  h-100 position-relative">
                 <img src="./imgs/pexels-mccutcheon-1578293.jpg" alt="" class="h-100 w-100">
-                <div class="container h-100 d-flex align-items-center  bg-secondary-subtle">
-                    <div class="carousel-caption text-end text-black shadow-lg p-3 bg-white opacity-75 rounded">
+                <div class="container h-100 d-flex align-items-center justify-content-center bg-secondary-subtle">
+                    <div class="carousel-caption text-center text-black shadow-lg p-3 bg-white opacity-75 rounded position-absolute top-25 start-50 translate-middle">
                         <h1>Alguna Frase.</h1>
                         <p class="opacity-75">
                             Alguna frase larga que represente algo.
@@ -158,21 +156,16 @@ if (!isset($_SESSION['logueado'])) {
                     <h3>Nuevo empleado</h3>
                     <form action="guardar.php" method="post">
                         <div class="form-group">
-                            <input type="text" name="dni" class="form-control" placeholder="Ingresar DNI" autofocus><br>
-                            <input type="text" name="nombre" class="form-control" placeholder="Ingresar Nombre" autofocus><br>
-                            <input type="text" name="apellido" class="form-control" placeholder="Ingresar Apellido" autofocus><br>
-                            <input type="text" name="direccion" class="form-control" placeholder="Ingresar Dirección" autofocus><br>
-                            <input type="text" name="telefono" class="form-control" placeholder="Ingresar Teléfono" autofocus><br>
+                            <input type="text" name="dni" class="form-control" placeholder="Ingresar DNI" autofocus required><br>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ingresar Nombre" autofocus required><br>
+                            <input type="text" name="apellido" class="form-control" placeholder="Ingresar Apellido" autofocus required><br>
+                            <input type="text" name="direccion" class="form-control" placeholder="Ingresar Dirección" autofocus required><br>
+                            <input type="text" name="telefono" class="form-control" placeholder="Ingresar Teléfono" autofocus required><br>
                             <?php include("includes/departamentos.php"); ?>
-                            <select name="localidad" class="form-control" required>
-                                <option value="">Seleccionar Localidad</option>
-                                <option value="alejandro Korn">Alejandro Korn</option>
-                                <option value="Glew">Glew</option>
-                                <option value="Longchamps">Longchamps</option>
-                                <option value="San Vicente">San Vicente</option>
-                                <option value="Doomselaar">Doomselaar</option>
-                            </select><br>
-                            <?php include("includes/provincias.php"); ?>
+                            <?php include("includes/provincias2.php"); ?>
+                            <?php include("includes/localidades.php"); ?>
+
+
                         </div>
                         <br>
                         <input type="submit" class="btn btn-success btn-block float-start" name="guardar-empleado" value="Guardar empleado">

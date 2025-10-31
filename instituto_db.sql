@@ -2,6 +2,15 @@
 CREATE DATABASE IF NOT EXISTS instituto_db;
 USE instituto_db;
 
+CREATE TABLE IF NOT EXISTS provincias(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    provincia VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS localidades(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    localidad VARCHAR(50) UNIQUE NOT NULL
+);
 CREATE TABLE IF NOT EXISTS departamentos (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     departamento VARCHAR(20) UNIQUE NOT NULL
@@ -15,9 +24,11 @@ CREATE TABLE IF NOT EXISTS empleados (
     direccion VARCHAR(255) NOT NULL,
     telefono VARCHAR(12) NOT NULL,
     id_departamento INTEGER NOT NULL,
-    localidad VARCHAR(100) NOT NULL,
-    provincia VARCHAR(100) NOT NULL,
-    CONSTRAINT FK_DEPARTAMENTOS FOREIGN KEY (id_departamento) REFERENCES departamentos(id)
+    id_localidad INTEGER NOT NULL,
+    id_provincia INTEGER NOT NULL,
+    CONSTRAINT FK_DEPARTAMENTOS FOREIGN KEY (id_departamento) REFERENCES departamentos(id),
+    CONSTRAINT FK_PROVINCIAS FOREIGN KEY (id_provincia) REFERENCES provincias(id),
+    CONSTRAINT FK_LOCALIDADES FOREIGN KEY (id_localidad) REFERENCES localidades(id)
 );
 
 CREATE TABLE IF NOT EXISTS usuarios (
@@ -27,6 +38,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(100) NOT NULL UNIQUE
 );
 
+INSERT INTO provincias (provincia) VALUES('Buenos Aires');
+INSERT INTO localidades (localidad) VALUES('Alejandro korn');
 INSERT INTO departamentos (departamento)
 VALUES
 ('Ventas'),
@@ -39,12 +52,13 @@ VALUES
 ('Gerencia'),
 ('Vigilancia');
 
-INSERT INTO empleados (dni, nombre, apellido, direccion, telefono, id_departamento, localidad, provincia) VALUES
-(12345678, 'Juan', 'Pereira', 'Calle Falsa 123', 12345678, 1, 'San Vicente', 'Buenos Aires'),
-(12345679, 'María', 'González', 'Av. Siempre Viva 742', 98765432, 2, 'San Vicente', 'Córdoba');
+INSERT INTO empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia) VALUES
+(12345678, 'Juan', 'Pereira', 'Calle Falsa 123', 12345678, 1, 1, 1),
+(12345679, 'María', 'González', 'Av. Siempre Viva 742', 98765432, 2, 1, 1);
 
 INSERT INTO usuarios (username, password, email) VALUES
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@empresa.com');
+
 -- Vista para seleccionar todos los datos de la tabla empleados y departamentos
 CREATE VIEW vista_empleados AS
 SELECT
@@ -55,19 +69,23 @@ e.apellido as 'Apellido',
 e.direccion as 'Dirección',
 e.telefono as 'Telefono',
 d.departamento as 'Departamento',
-e.localidad as 'Localidad',
-e.provincia as 'Provincia'
+l.localidad as 'Localidad',
+p.provincia as 'Provincia'
 FROM empleados e
 INNER JOIN departamentos d
 ON e.id_departamento = d.id
-ORDER BY e.id_departamento;
+INNER JOIN provincias p
+ON e.id_provincia = p.id
+INNER JOIN localidades l
+ON e.id_localidad = l.id
+ORDER BY e.id;
 
 DELIMITER //
 
 CREATE PROCEDURE BuscarEmpleadosPorDNI_nombre_apellido(IN parametro_busqueda VARCHAR(255))
 BEGIN
     SELECT
-*
+    *
     FROM vista_empleados
     WHERE Dni LIKE CONCAT('%', parametro_busqueda, '%')
     OR Nombre LIKE CONCAT('%', parametro_busqueda, '%')
