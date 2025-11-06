@@ -125,7 +125,7 @@
             <div class="d-flex">
                 <?php if (isset($_SESSION['logueado'])): ?>
                     <span class="text-white me-3">Bienvenido, <?php echo $_SESSION['username']; ?></span>
-                    <a href="cerrar_sesion.php" class="btn btn-outline-light">Cerrar Sesión</a>
+                    <a href="cerrar_sesion.php" class="btn btn-outline-light"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a>
                 <?php endif; ?>
             </div>
         </div>

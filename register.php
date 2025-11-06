@@ -117,8 +117,10 @@ if (isset($_POST['register'])) {
                             </div>
                         </div>
                         <br>
-                        <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
-                        <a href="index.php" class="btn btn-secondary">Volver al inicio</a>
+                        <button type="submit" class="btn btn-success btn-block" name="register">
+                            <i class="bi bi-person-plus"></i> Registrarse
+                        </button>
+                        <a href="index.php" class="btn btn-secondary"><i class="bi bi-arrow-return-left"></i> Volver al inicio</a>
                     </form>
                 </div>
             </div>

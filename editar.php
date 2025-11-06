@@ -152,9 +152,9 @@ function seleccionar($actual, $cia)
 
                             <div class="col-12">
                                 <button class="btn btn-success" name="actualizar">
-                                    Actualizar
+                                    <i class="bi bi-save"></i> Actualizar
                                 </button>
-                            <a href="inicio.php" class="btn btn-secondary float-end">Volver</a>
+                            <a href="inicio.php" class="btn btn-secondary float-end"><i class="bi bi-arrow-return-left"></i> Volver</a>
                             </div>
                     </form>
                 </div>

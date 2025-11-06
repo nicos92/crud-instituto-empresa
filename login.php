@@ -77,8 +77,10 @@ if (isset($_POST['login'])) {
                                 </div>
                             </div>
                             <br>
-                            <input type="submit" class="btn btn-success btn-block" name="login" value="Iniciar Sesión">
-                            <a href="register.php" class="btn btn-secondary">Registrarse</a>
+                            <button type="submit" class="btn btn-success btn-block" name="login">
+                                <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                            </button>
+                            <a href="register.php" class="btn btn-secondary"><i class="bi bi-person-plus"></i> Registrarse</a>
                         </form>
                     </div>
                 </div>

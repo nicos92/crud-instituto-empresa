@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
                     </div>
 
                         <br>
-                        <a href="inicio.php" type="button" class="btn btn-success col-md-2">Volver</a>
+                        <a href="inicio.php" type="button" class="btn btn-success col-md-2"><i class="bi bi-arrow-return-left"></i> Volver</a>
                     </div>
 
                     </col-md>
