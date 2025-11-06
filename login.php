@@ -55,8 +55,14 @@ if (isset($_POST['login'])) {
 
                         <form action="login.php" method="POST">
                             <div class="form-group">
-                                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
-                                <input type="password" name="password" class="form-control" placeholder="Contraseña" required><br>
+                                <div class="input-group m-1">
+                                    <span class="input-group-text" id="inputGroupPrepend">Usuario:</span>
+                                    <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
+                                </div>
+                                <div class="input-group m-1">
+                                    <span class="input-group-text" id="inputGroupPrepend">Contraseña:</span>
+                                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required><br>
+                                </div>
                             </div>
                             <br>
                             <input type="submit" class="btn btn-success btn-block" name="login" value="Iniciar Sesión">

@@ -10,25 +10,7 @@ if (!isset($_SESSION['logueado'])) {
 
 <div class="content">
     <div id="myCarousel" class="carousel slide mb-6 vh-100" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button
-                type="button"
-                data-bs-target="#myCarousel"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"></button>
-            <button
-                type="button"
-                data-bs-target="#myCarousel"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button
-                type="button"
-                data-bs-target="#myCarousel"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
+
         <div class="carousel-inner h-100">
             <div class="carousel-item active h-100 position-relative">
                 <img src="./imgs/pexels-sydney-troxell-223521-718752.jpg" alt="" class="h-100 w-100">
@@ -87,6 +69,39 @@ if (!isset($_SESSION['logueado'])) {
         </button>
     </div>
     <div class="container p-4">
+        <!--Mensaje de emple-->
+
+        <?php
+
+        if (isset($_SESSION['message'])) {
+
+        ?>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= $_SESSION['message'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='inicio.php'"></button>
+            </div>
+
+        <?php
+            unset($_SESSION['message']);
+        }
+        ?>
+
+        <?php
+
+        if (isset($_SESSION['error'])) {
+
+        ?>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= $_SESSION['error'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="location.href='inicio.php'"></button>
+            </div>
+
+        <?php
+            unset($_SESSION['error']);
+        }
+        ?>
 
         <div class="col">
 
@@ -99,17 +114,25 @@ if (!isset($_SESSION['logueado'])) {
 
                 <!--Buscar tarea-->
                 <div class="card card-body">
-                    <h3>Buscar empleado</h3>
-                    <form action="inicio.php" method="post">
-
-                        <input type="text" name="dni" class="form-control" placeholder="Dni, Nombre o Apellido del empleado">
-
-                        <br>
-                        <input type="submit" class="btn btn-success btn-block " name="buscar-empleado" value="Buscar">
-                        <input type="submit" class="btn btn-secondary btn-block " name="todos-empleados" value="Todos los empleados">
+                    <h3 class="mb-4">Buscar empleado</h3>
+                    <form action="inicio.php" method="post" class="row g-3 needs-validation" novalidate>
+                        <div class="input-group m-1 col-md-4">
+                            <label for="dni" class="form-label">DNI, Nombre, Apellido:</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                <input type="text" id="buscar_empleado" name="dni" class="form-control" placeholder="Dni, Nombre o Apellido del empleado" required>
+                                <div class="valid-feedback">
+                                    Se puede buscar!
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <input type="submit" class="btn btn-success btn-block " name="buscar-empleado" value="Buscar">
+                                <input type="submit" class="btn btn-secondary btn-block " name="todos-empleados" value="Todos los empleados">
+                            </div>
+                        </div>
                     </form>
+
                 </div>
-                <br>
 
             </div>
 
@@ -154,21 +177,53 @@ if (!isset($_SESSION['logueado'])) {
                 <!--Guardar empleado-->
                 <div class="card card-body">
                     <h3>Nuevo empleado</h3>
-                    <form action="guardar.php" method="post">
+                    <form action="guardar.php" method="post" class="row g-3 needs-validation" novalidate>
                         <div class="form-group">
-                            <input type="text" name="dni" class="form-control" placeholder="Ingresar DNI" autofocus required><br>
-                            <input type="text" name="nombre" class="form-control" placeholder="Ingresar Nombre" autofocus required><br>
-                            <input type="text" name="apellido" class="form-control" placeholder="Ingresar Apellido" autofocus required><br>
-                            <input type="text" name="direccion" class="form-control" placeholder="Ingresar Dirección" autofocus required><br>
-                            <input type="text" name="telefono" class="form-control" placeholder="Ingresar Teléfono" autofocus required><br>
+                            <div class="input-group m-1 col-md-4">
+                                <span class="input-group-text" id="inputGroupPrepend">DNI:</span>
+                                <input type="number" title="Debe tener 8 dígitos" name="dni" id="dni" class="form-control" placeholder="Ingresar DNI" required>
+                                <div class="valid-feedback">
+
+                                </div>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <span class="input-group-text" id="inputGroupPrepend">Nombre:</span>
+                                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresar Nombre" required>
+                                <div class="valid-feedback">
+
+                                </div>
+                            </div>
+                            <div class="input-group m-1">
+                                <span class="input-group-text" id="inputGroupPrepend">Apellido:</span>
+                                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingresar Apellido" required>
+                                <div class="valid-feedback">
+
+                                </div>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <span class="input-group-text" id="inputGroupPrepend">Dirección:</span>
+                                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ingresar Dirección" required>
+                                <div class="valid-feedback">
+
+                                </div>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <span class="input-group-text" id="inputGroupPrepend">Teléfono:</span>
+                                <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Ingresar Teléfono" required>
+                                <div class="valid-feedback">
+
+                                </div>
+                            </div>
                             <?php include("includes/departamentos.php"); ?>
+                            <?php include("includes/paises.php"); ?>
                             <?php include("includes/provincias2.php"); ?>
                             <?php include("includes/localidades.php"); ?>
 
 
                         </div>
-                        <br>
-                        <input type="submit" class="btn btn-success btn-block float-start" name="guardar-empleado" value="Guardar empleado">
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-success btn-block float-start" name="guardar-empleado" value="Guardar empleado">
+                        </div>
                     </form>
 
                 </div>
@@ -193,8 +248,9 @@ if (!isset($_SESSION['logueado'])) {
                             <th>Dirección</th>
                             <th>Teléfono</th>
                             <th>Departamento</th>
-                            <th>Localidad</th>
+                            <th>Pais</th>
                             <th>Provincia</th>
+                            <th>Localidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -225,20 +281,21 @@ if (!isset($_SESSION['logueado'])) {
                                         <td> <?php echo $row['Departamento']; ?></td>
                                         <td> <?php echo $row['Localidad']; ?></td>
                                         <td> <?php echo $row['Provincia']; ?> </td>
+                                        <td> <?php echo $row['Pais']; ?> </td>
                                         <td>
 
-                                            <a href="ver.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-success">
+                                            <a href="ver.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-success m-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
                                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
                                                 </svg>
                                             </a>
-                                            <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary">
+                                            <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary m-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                                                 </svg>
                                             </a>
-                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger" onclick="return confirmar()">
+                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger m-1" onclick="return confirmar()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
@@ -273,21 +330,23 @@ if (!isset($_SESSION['logueado'])) {
                                         <td> <?php echo $row['Departamento']; ?></td>
                                         <td> <?php echo $row['Localidad']; ?></td>
                                         <td> <?php echo $row['Provincia']; ?></td>
+                                        <td> <?php echo $row['Pais']; ?> </td>
+
                                         <td>
 
 
-                                            <a href="ver.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-success">
+                                            <a href="ver.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-success m-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
                                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
                                                 </svg>
                                             </a>
-                                            <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary">
+                                            <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary m-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
                                                 </svg>
                                             </a>
-                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger" onclick="return confirmar()">
+                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger m-1" onclick="return confirmar()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />

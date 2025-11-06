@@ -21,6 +21,7 @@ if (isset($_GET['id'])) {
         $departamento = $row['Departamento'];
         $localidad = $row['Localidad'];
         $provincia = $row['Provincia'];
+        $pais = $row['Pais'];
     }
 }
 
@@ -30,40 +31,54 @@ if (isset($_GET['id'])) {
 
 <?php include("includes/header.php"); ?>
 
-    <div class="content">
-        <div class="container p-4">
+<div class="content">
+    <div class="container p-4">
 
-            <div class="row">
+        <div class="row">
 
-                <col-md4 mx-auto>
+            <col-md4 mx-auto>
 
-                    <div class="card card-body ">
-                        <h3>Ver empleado</h3>
-                        <!--Mostrar datos del empleado-->
-                        <div class="form-group">
-                            <label><strong>DNI:</strong></label>
+                <div class="card card-body ">
+                    <h3>Ver empleado</h3>
+                    <!--Mostrar datos del empleado-->
+                    <div class="form-group">
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">DNI:</span>
                             <input type="text" value="<?php echo $dni; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Nombre:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Nombre:</span>
                             <input type="text" value="<?php echo $nombre; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Apellido:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Apellido:</span>
                             <input type="text" value="<?php echo $apellido; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Dirección:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Dirección:</span>
                             <input type="text" value="<?php echo $direccion; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Teléfono:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Teléfono:</span>
                             <input type="text" value="<?php echo $telefono; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Departamento:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Departamento:</span>
                             <input type="text" value="<?php echo $departamento; ?>" class="form-control" readonly><br>
-
-                            <label><strong>Provincia:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">País:</span>
+                            <input type="text" value="<?php echo $pais; ?>" class="form-control" readonly><br>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Provincia:</span>
                             <input type="text" value="<?php echo $provincia; ?>" class="form-control" readonly><br>
-                            <label><strong>Localidad:</strong></label>
+                        </div>
+                        <div class="input-group m-2 col-md-4">
+                            <span class="input-group-text" id="inputGroupPrepend">Localidad:</span>
                             <input type="text" value="<?php echo $localidad; ?>" class="form-control" readonly><br>
                         </div>
+                    </div>
 
                         <br>
                         <a href="inicio.php" type="button" class="btn btn-success col-md-2">Volver</a>
@@ -71,10 +86,10 @@ if (isset($_GET['id'])) {
 
                     </col-md>
 
-            </div>
+                </div>
 
         </div>
     </div>
 
 
-<?php include("includes/footer.php"); ?>
+    <?php include("includes/footer.php"); ?>

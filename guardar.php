@@ -14,8 +14,9 @@ if(isset($_POST ['guardar-empleado'])){
         $departamento = $_POST['departamento'];
         $localidad = $_POST['localidad'];
         $provincia = $_POST['provincia'];
+        $pais = $_POST['pais'];
 
-        $query = "insert into empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia) values ('$dni', '$nombre', '$apellido', '$direccion', '$telefono', $departamento, '$localidad', '$provincia')";
+        $query = "insert into empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia, id_pais) values ('$dni', '$nombre', '$apellido', '$direccion', '$telefono', $departamento, $localidad, $provincia, $pais)";
 
         try {
             //code...

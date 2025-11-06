@@ -75,10 +75,22 @@ if (isset($_POST['register'])) {
 
                     <form action="register.php" method="POST">
                         <div class="form-group">
-                            <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
-                            <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
-                            <input id="passuno" type="password" name="password" class="form-control" placeholder="Contraseña" required ><br>
-                            <input id="passdos" type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required ><br>
+                            <div class="input-group m-1">
+                                <span class="input-group-text" id="inputGroupPrepend">Usuario:</span>
+                                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
+                            </div>
+                            <div class="input-group m-1">
+                                <span class="input-group-text" id="inputGroupPrepend">Email:</span>
+                                <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
+                            </div>
+                            <div class="input-group m-1">
+                                <span class="input-group-text" id="inputGroupPrepend">Contraseña:</span>
+                                <input id="passuno" type="password" name="password" class="form-control" placeholder="Contraseña" required ><br>
+                            </div>
+                            <div class="input-group m-1">
+                                <span class="input-group-text" id="inputGroupPrepend">Confirmar:</span>
+                                <input id="passdos" type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required ><br>
+                            </div>
                         </div>
                         <br>
                         <input type="submit" class="btn btn-success btn-block" name="register" value="Registrarse">
