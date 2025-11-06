@@ -73,23 +73,47 @@ if (isset($_POST['register'])) {
                         </div>
                     <?php endif; ?>
 
-                    <form action="register.php" method="POST">
+                    <form action="register.php" method="POST" class="row g-3 needs-validation" novalidate>
                         <div class="form-group">
                             <div class="input-group m-1">
-                                <span class="input-group-text" id="inputGroupPrepend">Usuario:</span>
-                                <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required><br>
+                                <label for="username" class="form-label">Usuario:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Nombre de usuario" required>
+                                    <div class="valid-feedback">
+                                        Usuario válido!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1">
-                                <span class="input-group-text" id="inputGroupPrepend">Email:</span>
-                                <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required><br>
+                                <label for="email" class="form-label">Email:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Correo electrónico" required>
+                                    <div class="valid-feedback">
+                                        Email válido!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1">
-                                <span class="input-group-text" id="inputGroupPrepend">Contraseña:</span>
-                                <input id="passuno" type="password" name="password" class="form-control" placeholder="Contraseña" required ><br>
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-lock"></i></span>
+                                    <input id="passuno" type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                                    <div class="valid-feedback">
+                                        Contraseña válida!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1">
-                                <span class="input-group-text" id="inputGroupPrepend">Confirmar:</span>
-                                <input id="passdos" type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required ><br>
+                                <label for="confirm_password" class="form-label">Confirmar:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-lock"></i></span>
+                                    <input id="passdos" type="password" name="confirm_password" class="form-control" placeholder="Confirmar contraseña" required>
+                                    <div class="valid-feedback">
+                                        Contraseña válida!
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <br>

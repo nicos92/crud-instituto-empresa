@@ -119,7 +119,7 @@ if (!isset($_SESSION['logueado'])) {
                         <div class="input-group m-1 col-md-4">
                             <label for="dni" class="form-label">DNI, Nombre, Apellido:</label>
                             <div class="input-group has-validation">
-                                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-vcard"></i></span>
                                 <input type="text" id="buscar_empleado" name="dni" class="form-control" placeholder="Dni, Nombre o Apellido del empleado" required>
                                 <div class="valid-feedback">
                                     Se puede buscar!
@@ -180,38 +180,53 @@ if (!isset($_SESSION['logueado'])) {
                     <form action="guardar.php" method="post" class="row g-3 needs-validation" novalidate>
                         <div class="form-group">
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">DNI:</span>
-                                <input type="number" title="Debe tener 8 dígitos" name="dni" id="dni" class="form-control" placeholder="Ingresar DNI" required>
-                                <div class="valid-feedback">
-
+                                <label for="dni" class="form-label">DNI:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-vcard"></i></span>
+                                    <input type="number" title="Debe tener 8 dígitos" name="dni" id="dni" class="form-control" placeholder="Ingresar DNI" required>
+                                    <div class="valid-feedback">
+                                        Se puede guardar!
+                                    </div>
                                 </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Nombre:</span>
-                                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresar Nombre" required>
-                                <div class="valid-feedback">
-
-                                </div>
-                            </div>
-                            <div class="input-group m-1">
-                                <span class="input-group-text" id="inputGroupPrepend">Apellido:</span>
-                                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingresar Apellido" required>
-                                <div class="valid-feedback">
-
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingresar Nombre" required>
+                                    <div class="valid-feedback">
+                                        Se puede guardar!
+                                    </div>
                                 </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Dirección:</span>
-                                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ingresar Dirección" required>
-                                <div class="valid-feedback">
-
+                                <label for="apellido" class="form-label">Apellido:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingresar Apellido" required>
+                                    <div class="valid-feedback">
+                                        Se puede guardar!
+                                    </div>
                                 </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Teléfono:</span>
-                                <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Ingresar Teléfono" required>
-                                <div class="valid-feedback">
-
+                                <label for="direccion" class="form-label">Dirección:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-house"></i></span>
+                                    <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ingresar Dirección" required>
+                                    <div class="valid-feedback">
+                                        Se puede guardar!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <label for="telefono" class="form-label">Teléfono:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Ingresar Teléfono" required>
+                                    <div class="valid-feedback">
+                                        Se puede guardar!
+                                    </div>
                                 </div>
                             </div>
                             <?php include("includes/departamentos.php"); ?>

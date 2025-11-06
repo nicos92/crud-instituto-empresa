@@ -16,20 +16,21 @@ if(isset($_POST ['guardar-empleado'])){
         $provincia = $_POST['provincia'];
         $pais = $_POST['pais'];
 
-        $query = "insert into empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia, id_pais) values ('$dni', '$nombre', '$apellido', '$direccion', '$telefono', $departamento, $localidad, $provincia, $pais)";
+        $query = "INSERT INTO empleados (dni, nombre, apellido, direccion, telefono, id_departamento, id_localidad, id_provincia, id_pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssssiiiii", $dni, $nombre, $apellido, $direccion, $telefono, $departamento, $localidad, $provincia, $pais);
 
         try {
-            //code...
-            $resultado = mysqli_query($conn, $query);
+            $resultado = $stmt->execute();
 
             if (!$resultado){
-                die("Conexión fallida");
+                die("Error al guardar el registro");
             }
 
             $_SESSION['message'] = 'Registro guardado con éxito';
 
-        } catch (\Throwable $th) {
-            $_SESSION['error'] = 'No se pudo realizar el Registro. DNI Duplicado.';
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'No se pudo realizar el Registro. DNI Duplicado o error en los datos. Error: ' . $e->getMessage();
         }
         header ("Location: inicio.php");
     } else {

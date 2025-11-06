@@ -45,11 +45,17 @@ if (isset($_POST['actualizar'])) {
     $pais = $_POST['pais'] ?? '';
 
 
-    $query = "update empleados set dni='$dni', nombre='$nombre', apellido='$apellido', direccion='$direccion', telefono='$telefono', id_departamento=$departamento, id_localidad= $localidad, id_provincia = $provincia, id_pais = $pais where id=$id";
+    $query = "UPDATE empleados SET dni=?, nombre=?, apellido=?, direccion=?, telefono=?, id_departamento=?, id_localidad=?, id_provincia=?, id_pais=? WHERE id=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sssssiiiii", $dni, $nombre, $apellido, $direccion, $telefono, $departamento, $localidad, $provincia, $pais, $id);
 
-    mysqli_query($conn, $query);
+    $resultado = $stmt->execute();
 
-    $_SESSION['message'] = "El registro se actualizó correctamente";
+    if ($resultado) {
+        $_SESSION['message'] = "El registro se actualizó correctamente";
+    } else {
+        $_SESSION['error'] = "Error al actualizar el registro";
+    }
 
     header("location: inicio.php");
 }
@@ -75,39 +81,74 @@ function seleccionar($actual, $cia)
                     <form action="editar.php?id=<?php echo $_GET['id']; ?>" method="POST" class="row g-3 needs-validation" novalidate>
                         <div class="form-group">
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">DNI:</span>
-                                <input type="text" name="dni" id="dni" value="<?php echo $dni; ?>" class="form-control" placeholder="Actualizar DNI" required>
+                                <label for="dni" class="form-label">DNI:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-vcard"></i></span>
+                                    <input type="text" name="dni" id="dni" value="<?php echo $dni; ?>" class="form-control" placeholder="Actualizar DNI" required>
+                                    <div class="valid-feedback">
+                                        Se puede actualizar!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Nombre:</span>
-                                <input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre" required>
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Actualizar nombre" required>
+                                    <div class="valid-feedback">
+                                        Se puede actualizar!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Apellido:</span>
-                                <input type="text" name="apellido" id="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Actualizar apellido" required>
+                                <label for="apellido" class="form-label">Apellido:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="apellido" id="apellido" value="<?php echo $apellido; ?>" class="form-control" placeholder="Actualizar apellido" required>
+                                    <div class="valid-feedback">
+                                        Se puede actualizar!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Dirección:</span>
-                                <input type="text" name="direccion" id="direccion" value="<?php echo $direccion; ?>" class="form-control" placeholder="Actualizar dirección" required>
+                                <label for="direccion" class="form-label">Dirección:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-house"></i></span>
+                                    <input type="text" name="direccion" id="direccion" value="<?php echo $direccion; ?>" class="form-control" placeholder="Actualizar dirección" required>
+                                    <div class="valid-feedback">
+                                        Se puede actualizar!
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-group m-1 col-md-4">
-                                <span class="input-group-text" id="inputGroupPrepend">Teléfono:</span>
-                                <input type="text" name="telefono" id="telefono" value="<?php echo $telefono; ?>" class="form-control" placeholder="Actualizar teléfono" required>
+                                <label for="telefono" class="form-label">Teléfono:</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-telephone"></i></span>
+                                    <input type="text" name="telefono" id="telefono" value="<?php echo $telefono; ?>" class="form-control" placeholder="Actualizar teléfono" required>
+                                    <div class="valid-feedback">
+                                        Se puede actualizar!
+                                    </div>
+                                </div>
                             </div>
+                            <div class="input-group m-1 col-md-4">
                                 <?php
-
                                 $departamento_actual = $departamento;
                                 $pais_actual = $pais;
                                 $provincia_actual = $provincia;
                                 $localidad_actual = $localidad;
                                 include("includes/departamentos.php");
                                 ?>
-                                <?php include("includes/paises.php"); ?>
-                                <?php include("includes/provincias2.php"); ?>
-                                <?php include("includes/localidades.php"); ?>
-
-
                             </div>
+                            <div class="input-group m-1 col-md-4">
+                                <?php include("includes/paises.php"); ?>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <?php include("includes/provincias2.php"); ?>
+                            </div>
+                            <div class="input-group m-1 col-md-4">
+                                <?php include("includes/localidades.php"); ?>
+                            </div>
+                        </div>
 
                             <div class="col-12">
                                 <button class="btn btn-success" name="actualizar">
