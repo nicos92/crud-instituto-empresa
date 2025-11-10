@@ -250,11 +250,7 @@ if (!isset($_SESSION['logueado'])) {
                 </div>
 
 
-                <script type="text/javascript">
-                    function confirmar() {
-                        return confirm('¿Quiere borrar el registro?');
-                    }
-                </script>
+
 
 
                 <!--Tabla-->
@@ -311,9 +307,34 @@ if (!isset($_SESSION['logueado'])) {
                                                 <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary btn-sm">
                                                     <i class="bi bi-pencil"></i> Editar
                                                 </a>
-                                                <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger btn-sm" onclick="return confirmar()">
+                                                <a class="btn btn-danger btn-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#eliminarModal<?php echo $row['Id Empleado']; ?>">
                                                     <i class="bi bi-trash"></i> Eliminar
                                                 </a>
+                                            </div>
+
+                                            <!-- Modal para eliminar empleado -->
+                                            <div class="modal fade"
+                                                id="eliminarModal<?php echo $row['Id Empleado']; ?>"
+                                                tabindex="-1"
+                                                aria-labelledby="eliminarModalLabel<?php echo $row['Id Empleado']; ?>"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="eliminarModalLabel<?php echo $row['Id Empleado']; ?>">Confirmar eliminación</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro que desea eliminar al empleado <strong><?php echo htmlspecialchars($row['Nombre'] . ' ' . $row['Apellido']); ?></strong>?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cancelar</button>
+                                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado']; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -353,9 +374,34 @@ if (!isset($_SESSION['logueado'])) {
                                                 <a href="editar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-secondary btn-sm m-1">
                                                     <i class="bi bi-pencil"></i> Editar
                                                 </a>
-                                                <a href="eliminar.php?id=<?php echo $row['Id Empleado'] ?>" class="btn btn-danger btn-sm m-1" onclick="return confirmar()">
+                                                <a class="btn btn-danger btn-sm m-1"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#eliminarModal<?php echo $row['Id Empleado']; ?>">
                                                     <i class="bi bi-trash"></i> Eliminar
                                                 </a>
+                                            </div>
+
+                                            <!-- Modal para eliminar empleado -->
+                                            <div class="modal fade"
+                                                id="eliminarModal<?php echo $row['Id Empleado']; ?>"
+                                                tabindex="-1"
+                                                aria-labelledby="eliminarModalLabel<?php echo $row['Id Empleado']; ?>"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="eliminarModalLabel<?php echo $row['Id Empleado']; ?>">Confirmar eliminación</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Está seguro que desea eliminar al empleado <strong><?php echo htmlspecialchars($row['Nombre'] . ' ' . $row['Apellido']); ?></strong>?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i> Cancelar</button>
+                                                            <a href="eliminar.php?id=<?php echo $row['Id Empleado']; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -378,6 +424,16 @@ if (!isset($_SESSION['logueado'])) {
 
     </div>
 </div>
+
+
+<!-- Optional: Place to the bottom of scripts -->
+<script>
+    const myModal = new bootstrap.Modal(
+        document.getElementById("modalId"),
+        options,
+    );
+</script>
+
 
 
 <?php include("includes/footer.php"); ?>

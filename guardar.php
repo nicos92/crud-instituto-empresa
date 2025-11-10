@@ -30,7 +30,7 @@ if(isset($_POST ['guardar-empleado'])){
             $_SESSION['message'] = 'Registro guardado con éxito';
 
         } catch (Exception $e) {
-            $_SESSION['error'] = 'No se pudo realizar el Registro. DNI Duplicado o error en los datos. Error: ' . $e->getMessage();
+            $_SESSION['error'] = 'No se pudo realizar el Registro. DNI Duplicado o error en los datos';
         }
         header ("Location: inicio.php");
     } else {
